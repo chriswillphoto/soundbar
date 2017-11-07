@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.container {
+  height: 80vh;
+  width: auto;
+  background-color: skyblue;
+}
+
+.buttonbar {
+  height: 20vh;
+  background-color: blue;
+}
+
+.button {
+  box-sizing: border-box;
+  border: 1px solid black;
+  height: 100%;
+  width: calc(100% / 7);
+  display: inline-block;
+  background-color: white;
+}
