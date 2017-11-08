@@ -22,14 +22,30 @@
       src: ["clap.mp3"]
     })
 
+    var bass1 = new Howl({
+      src: ["bass1.mp3"],
+      volume: 0.3
+    })
+
+    var bass2 = new Howl({
+      src: ["b2.mp3"],
+      volume: 0.3
+    })
+
+    var bass3 = new Howl({
+      src: ["bass3.mp3"],
+      volume: 0.3
+    })
+
     var circles = []
     var squares = []
+    var triangles = []
     var colors = ["blue", "red", "pink", "skyblue", "purple", "indigo"]
     var k = view.size.height
 
 
     function onKeyDown(event){
-        if(event.key === "d"){
+        if(event.key === "j"){
           var maxPoint = new Point(view.size.width, view.size.height)
           var newRectangle = new Path.Rectangle(new Point(maxPoint/2), 20)
           newRectangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
@@ -37,7 +53,7 @@
 
           squares.push(newRectangle);
         }else if(event.key === "a"){
-          for (var i = 0; i < 10; i++) {
+          for (var i = 0; i < 11; i++) {
             var maxPoint = new Point(view.size.width, view.size.height)
             var randomPoint = Point.random()
             var point = maxPoint * randomPoint
@@ -52,18 +68,29 @@
           }
 
         }else if(event.key === "k"){
-          var maxPoint = new Point(view.size.width, view.size.height)
-          var randomPoint = Point.random()
-          var point = maxPoint * randomPoint
-          var triangle = new Path.RegularPolygon(new Point(Math.floor(Math.random()*view.size.width), k), 3, 160);
-          triangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
+          for (var i = 0; i < 5; i++) {
+            var maxPoint = new Point(view.size.width, view.size.height)
+            var randomPoint = Point.random()
+            var point = maxPoint * randomPoint
+            var triangle = new Path.RegularPolygon(new Point(Math.floor(Math.random()*(view.size.width - 160)), k), 3, 160);
+            triangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
+            triangles.push(triangle)
+          }
+
 
           if(k > 0){
-          k -= 50
+          k -= 120
           }else{
           k = view.size.height
           }
           clap.play()
+        }else if(event.key === "i"){ // TODO GRAPHICS FOR BASS1
+
+          bass1.play()
+        }else if(event.key === "o"){
+          bass2.play()
+        }else if(event.key === "p"){
+          bass3.play()
         }
     }
 
@@ -88,6 +115,15 @@
             squares.splice(i, 1)
           }
         }
+
+        if(triangles.length > 4){
+        for (var i = 0; i < triangles.length; i++) {
+          triangles[i].remove()
+          triangles.splice(i, 1)
+        }
+      }
+
+
 
     }
 
