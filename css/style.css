@@ -5,7 +5,7 @@
 
 
 #myCanvas {
-  height: 80vh;
+  height: 100vh;
   width: 100%;
   background-color: black;
 }
@@ -13,6 +13,7 @@
 .buttonbar {
   height: 20vh;
   background-color: blue;
+  display: none;
 }
 
 .button {

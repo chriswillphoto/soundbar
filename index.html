@@ -10,33 +10,60 @@
     <script type="text/paperscript" canvas="myCanvas">
 
     var sound = new Howl({
-      src: ["define.mp3"]
+      src: ["pian.mp3"],
+      volume: 0.07
+    })
+
+    var kick = new Howl({
+      src: ["kick.mp3"],
+    })
+
+    var clap = new Howl({
+      src: ["clap.mp3"]
     })
 
     var circles = []
     var squares = []
-
+    var colors = ["blue", "red", "pink", "skyblue", "purple", "indigo"]
+    var k = view.size.height
 
 
     function onKeyDown(event){
         if(event.key === "d"){
           var maxPoint = new Point(view.size.width, view.size.height)
-          var randomPoint = Point.random()
-          var point = maxPoint * randomPoint
           var newRectangle = new Path.Rectangle(new Point(maxPoint/2), 20)
-          newRectangle.strokeColor = "blue"
-          sound.play()
+          newRectangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
+          kick.play();
 
           squares.push(newRectangle);
-        }else{
+        }else if(event.key === "a"){
+          for (var i = 0; i < 10; i++) {
+            var maxPoint = new Point(view.size.width, view.size.height)
+            var randomPoint = Point.random()
+            var point = maxPoint * randomPoint
+            var newCircle = new Path.Circle(new Point(point), 20)
+            var color = Math.floor(Math.random()*colors.length)
+            newCircle.fillColor = colors[color]
+            sound.play();
+
+            circles.push(newCircle);
+
+
+          }
+
+        }else if(event.key === "k"){
           var maxPoint = new Point(view.size.width, view.size.height)
           var randomPoint = Point.random()
           var point = maxPoint * randomPoint
-          var newCircle = new Path.Circle(new Point(point), 20)
-          newCircle.fillColor = "blue"
+          var triangle = new Path.RegularPolygon(new Point(Math.floor(Math.random()*view.size.width), k), 3, 160);
+          triangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
 
-          circles.push(newCircle);
-
+          if(k > 0){
+          k -= 50
+          }else{
+          k = view.size.height
+          }
+          clap.play()
         }
     }
 
@@ -67,11 +94,12 @@
     function onKeyUp(event){
 
       for (var i = 0; i < circles.length; i++) {
-        circles[i].remove()
+        // circles[i].remove()
       }
       for (var i = 0; i < squares.length; i++) {
-        squares[i].remove()
+        // squares[i].remove()
       }
+
     }
 
 
