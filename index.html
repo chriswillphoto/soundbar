@@ -38,6 +38,7 @@
     })
 
     var circles = []
+    var circles2 = []
     var squares = []
     var triangles = []
     var colors = ["blue", "red", "pink", "skyblue", "purple", "indigo"]
@@ -68,11 +69,11 @@
           }
 
         }else if(event.key === "k"){
-          for (var i = 0; i < 5; i++) {
+          for (var i = 0; i < 7; i++) {
             var maxPoint = new Point(view.size.width, view.size.height)
             var randomPoint = Point.random()
             var point = maxPoint * randomPoint
-            var triangle = new Path.RegularPolygon(new Point(Math.floor(Math.random()*(view.size.width - 160)), k), 3, 160);
+            var triangle = new Path.RegularPolygon(new Point(Math.floor(Math.random()*(view.size.width)), k), 3, 160);
             triangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
             triangles.push(triangle)
           }
@@ -85,11 +86,44 @@
           }
           clap.play()
         }else if(event.key === "i"){ // TODO GRAPHICS FOR BASS1
+          var circleMaker = function(x, y) {
+            var bassCircle = new Path.Circle(new Point(x, y), 90)
+            bassCircle.strokeColor = "white"
+            circles2.push(bassCircle)
+          }
+
+          circleMaker(220, 200)
+          circleMaker(220, 600)
+          circleMaker(1220, 200)
+          circleMaker(1220, 600)
 
           bass1.play()
+
         }else if(event.key === "o"){
+
+          var circleMaker = function(x, y) {
+            var bassCircle = new Path.Circle(new Point(x, y), 90)
+            bassCircle.strokeColor = "pink"
+            circles2.push(bassCircle)
+          }
+
+          circleMaker(220, 200)
+          circleMaker(220, 600)
+          circleMaker(1220, 200)
+          circleMaker(1220, 600)
           bass2.play()
         }else if(event.key === "p"){
+
+          var circleMaker = function(x, y) {
+            var bassCircle = new Path.Circle(new Point(x, y), 90)
+            bassCircle.strokeColor = "red"
+            circles2.push(bassCircle)
+          }
+
+          circleMaker(220, 200)
+          circleMaker(220, 600)
+          circleMaker(1220, 200)
+          circleMaker(1220, 600)
           bass3.play()
         }
     }
@@ -107,6 +141,15 @@
             }
         } // <-------- circles
 
+        for(i=0; i < circles2.length; i++){
+        // circles2[i].strokeColor.hue += 9;
+        circles2[i].scale(1.013);
+        if(circles2[i].area > 40000){
+          circles2[i].remove();
+          circles2.splice(i, 1);
+            }
+        }
+
         for (var i = 0; i < squares.length; i++) {
           squares[i].strokeColor.hue += 5
           squares[i].scale(1.08)
@@ -116,12 +159,6 @@
           }
         }
 
-        if(triangles.length > 4){
-        for (var i = 0; i < triangles.length; i++) {
-          triangles[i].remove()
-          triangles.splice(i, 1)
-        }
-      }
 
 
 
@@ -134,6 +171,9 @@
       }
       for (var i = 0; i < squares.length; i++) {
         // squares[i].remove()
+      }
+      for (var i = 0; i < triangles.length; i++) {
+        triangles[i].remove()
       }
 
     }
