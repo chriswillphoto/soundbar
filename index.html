@@ -5,19 +5,90 @@
     <title>SoundBar</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js" charset="utf-8"></script>
-    <script src="js/paperscript.js" type="text/paperscript" canvas="myCanvas"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js" charset="utf-8"></script>
+    <script type="text/paperscript" canvas="myCanvas">
+
+    var sound = new Howl({
+      src: ["define.mp3"]
+    })
+
+    var circles = []
+    var squares = []
+
+
+
+    function onKeyDown(event){
+        if(event.key === "d"){
+          var maxPoint = new Point(view.size.width, view.size.height)
+          var randomPoint = Point.random()
+          var point = maxPoint * randomPoint
+          var newRectangle = new Path.Rectangle(new Point(maxPoint/2), 20)
+          newRectangle.strokeColor = "blue"
+          sound.play()
+
+          squares.push(newRectangle);
+        }else{
+          var maxPoint = new Point(view.size.width, view.size.height)
+          var randomPoint = Point.random()
+          var point = maxPoint * randomPoint
+          var newCircle = new Path.Circle(new Point(point), 20)
+          newCircle.fillColor = "blue"
+
+          circles.push(newCircle);
+
+        }
+    }
+
+
+    function onFrame(event){
+
+        for(i=0; i < circles.length; i++){
+        circles[i].fillColor.hue += 6;
+        circles[i].scale(1.013);
+        if(circles[i].area > 4000){
+          circles[i].remove();
+          circles.splice(i, 1);
+          console.log(circles);
+            }
+        } // <-------- circles
+
+        for (var i = 0; i < squares.length; i++) {
+          squares[i].strokeColor.hue += 5
+          squares[i].scale(1.08)
+          if(squares[i].area > 500000){
+            squares[i].remove();
+            squares.splice(i, 1)
+          }
+        }
+
+    }
+
+    function onKeyUp(event){
+
+      for (var i = 0; i < circles.length; i++) {
+        circles[i].remove()
+      }
+      for (var i = 0; i < squares.length; i++) {
+        squares[i].remove()
+      }
+    }
+
+
+    </script>
     <script src="js/main.js" charset="utf-8"></script>
   </head>
   <body>
   <canvas id="myCanvas"></canvas>
   <div class="buttonbar">
-    <div class="button"></div>
-    <div class="button"></div>
-    <div class="button"></div>
-    <div class="button"></div>
-    <div class="button"></div>
-    <div class="button"></div>
-    <div class="button"></div>
+    <div class="button">
+    </div><div class="button">
+    </div><div class="button">
+    </div><div class="button">
+    </div><div class="button">
+    </div><div class="button">
+    </div><div class="button">
+    </div>
   </div>
 
 
