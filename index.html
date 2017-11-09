@@ -12,27 +12,27 @@
 
     var pian1 = new Howl({
       src: ["pian1.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
     var pian2 = new Howl({
       src: ["pian2.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
     var pian3 = new Howl({
       src: ["pian3.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
     var pian4 = new Howl({
       src: ["pian4.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
     var pian5 = new Howl({
       src: ["pian5.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
     var pian6 = new Howl({
       src: ["pian6.mp3"],
-      volume: 0.07
+      volume: 0.6
     })
 
     var kick = new Howl({
@@ -105,11 +105,12 @@
             var newCircle = new Path.Circle(new Point(point), 20)
             var color = Math.floor(Math.random()*colors.length)
             newCircle.fillColor = colors[color]
-            pian1.play();
 
             circles.push(newCircle);
 
           }
+          pian1.play();
+
           }else if(event.key === "s"){  // < -------------- PIANO CLIP -----------
             for (var i = 0; i < 11; i++) {
               var maxPoint = new Point(view.size.width, view.size.height)
@@ -118,10 +119,10 @@
               var newCircle = new Path.Circle(new Point(point), 20)
               var color = Math.floor(Math.random()*colors.length)
               newCircle.fillColor = colors[color]
-              pian2.play();
 
               circles.push(newCircle);
             }
+            pian2.play();
 
           }else if(event.key === "d"){  // < -------------- PIANO CLIP -----------
               for (var i = 0; i < 11; i++) {
@@ -131,10 +132,11 @@
                 var newCircle = new Path.Circle(new Point(point), 20)
                 var color = Math.floor(Math.random()*colors.length)
                 newCircle.fillColor = colors[color]
-                pian3.play();
 
                 circles.push(newCircle);
               }
+              pian3.play();
+
             }else if(event.key === "z"){  // < -------------- PIANO CLIP -----------
                 for (var i = 0; i < 11; i++) {
                   var maxPoint = new Point(view.size.width, view.size.height)
@@ -143,10 +145,11 @@
                   var newCircle = new Path.Circle(new Point(point), 20)
                   var color = Math.floor(Math.random()*colors.length)
                   newCircle.fillColor = colors[color]
-                  pian4.play();
 
                   circles.push(newCircle);
                 }
+                pian4.play();
+
               }else if(event.key === "x"){  // < -------------- PIANO CLIP -----------
                   for (var i = 0; i < 11; i++) {
                     var maxPoint = new Point(view.size.width, view.size.height)
@@ -155,10 +158,11 @@
                     var newCircle = new Path.Circle(new Point(point), 20)
                     var color = Math.floor(Math.random()*colors.length)
                     newCircle.fillColor = colors[color]
-                    pian5.play();
 
                     circles.push(newCircle);
                   }
+                  pian5.play();
+
                 }else if(event.key === "c"){  // < -------------- PIANO CLIP -----------
                     for (var i = 0; i < 11; i++) {
                       var maxPoint = new Point(view.size.width, view.size.height)
@@ -167,10 +171,10 @@
                       var newCircle = new Path.Circle(new Point(point), 20)
                       var color = Math.floor(Math.random()*colors.length)
                       newCircle.fillColor = colors[color]
-                      pian6.play();
 
                       circles.push(newCircle);
                     }
+                    pian6.play();
 
 
 
