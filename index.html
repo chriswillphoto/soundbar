@@ -11,80 +11,80 @@
 
 
     var pian1 = new Howl({
-      src: ["pian1.mp3"],
+      src: ["sounds/pian1.mp3"],
       volume: 0.6
     })
     var pian2 = new Howl({
-      src: ["pian2.mp3"],
+      src: ["sounds/pian2.mp3"],
       volume: 0.6
     })
     var pian3 = new Howl({
-      src: ["pian3.mp3"],
+      src: ["sounds/pian3.mp3"],
       volume: 0.6
     })
     var pian4 = new Howl({
-      src: ["pian4.mp3"],
+      src: ["sounds/pian4.mp3"],
       volume: 0.6
     })
     var pian5 = new Howl({
-      src: ["pian5.mp3"],
+      src: ["sounds/pian5.mp3"],
       volume: 0.6
     })
     var pian6 = new Howl({
-      src: ["pian6.mp3"],
+      src: ["sounds/pian6.mp3"],
       volume: 0.6
     })
 
     var kick = new Howl({
-      src: ["kick.mp3"],
+      src: ["sounds/kick.mp3"],
     })
 
     var clap = new Howl({
-      src: ["clap.mp3"]
+      src: ["sounds/clap.mp3"]
     })
 
     var bass1 = new Howl({
-      src: ["bass1.mp3"],
+      src: ["sounds/bass1.mp3"],
       volume: 0.3
     })
 
     var bass2 = new Howl({
-      src: ["b2.mp3"],
+      src: ["sounds/b2.mp3"],
       volume: 0.3
     })
 
     var bass3 = new Howl({
-      src: ["bass3.mp3"],
+      src: ["sounds/bass3.mp3"],
       volume: 0.3
     })
 
     var synth1 = new Howl ({
-      src: ["synth1.mp3"]
+      src: ["sounds/synth1.mp3"]
     })
     var synth2 = new Howl ({
-      src: ["synth2.mp3"]
+      src: ["sounds/synth2.mp3"]
     })
     var synth3 = new Howl ({
-      src: ["synth3.mp3"]
+      src: ["sounds/synth3.mp3"]
     })
     var synth4 = new Howl ({
-      src: ["synth4.mp3"]
+      src: ["sounds/synth4.mp3"]
     })
 
     var synthloop = new Howl ({
-      src: ["synthloop1.mp3"],
+      src: ["sounds/synthloop1.mp3"],
       loop: true,
       volume: 0.8
     })
 
     var synthloop2 = new Howl ({
-      src: ["synthloop2.mp3"],
+      src: ["sounds/synthloop2.mp3"],
       loop: true,
       volume: 0.6
     })
 
     var drumloop = new Howl({
-      src:["drumloop.mp3"],
+      src:["sounds/drumloop.mp3"],
       loop: true
     })
 
@@ -329,6 +329,8 @@
             clearInterval(intervalId)
           }
         }else if(event.key === "u"){
+
+
           if(!looper){
             drumloop.play()
             looper = true

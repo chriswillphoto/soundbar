@@ -4,9 +4,11 @@ $(".showHelp").on("click", function(){
   if(!help){
 
     $(".help").css("display", "block");
-    help = true
+    $(".showHelp").text("X");
+    help = true;
   }else{
     $(".help").css("display", "none");
-    help = false
-  }
-})
+    $(".showHelp").text("?");
+    help = false;
+  };
+});

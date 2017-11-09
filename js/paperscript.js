@@ -11,13 +11,13 @@ function onKeyDown(event){
 }
 
 function onFrame(event){
-    for(i=0; i < circles.length; i++){
+  for(i=0; i < circles.length; i++){
     circles[i].fillColor.hue += 3;
     circles[i].scale(0.98);
     if(circles[i].area < 1){
       circles[i].remove();
       circles.splice(i, 1);
       console.log(circles);
-        }
     }
-}
+  };
+};
