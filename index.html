@@ -74,6 +74,12 @@
     var synthloop = new Howl ({
       src: ["synthloop1.mp3"],
       loop: true,
+      volume: 0.8
+    })
+
+    var synthloop2 = new Howl ({
+      src: ["synthloop2.mp3"],
+      loop: true,
       volume: 0.6
     })
 
@@ -296,6 +302,27 @@
             looper = false
             clearInterval(intervalId)
           }
+        }else if(event.key === "y"){
+          var strobe = function() {
+            $("#myCanvas").css("background", "#2F2A30")
+
+            setTimeout(function(){
+              $("#myCanvas").css("background", "black")
+            }, 234.5)
+
+          }
+
+
+          if(!looper){
+            synthloop2.play()
+            looper = true
+            strobe();
+            intervalId = setInterval(strobe, 469)
+          }else{
+            synthloop2.stop()
+            looper = false
+            clearInterval(intervalId)
+          }
         }
     }
 
@@ -351,12 +378,15 @@
 
 
     </script>
-    <script src="js/main.js" charset="utf-8"></script>
   </head>
 
 
   <body>
 
   <canvas id="myCanvas"></canvas>
+  <div class="showHelp">?</div>
+  <div class="help"></div>
+  <script src="js/main.js" charset="utf-8"></script>
+  
   </body>
 </html>

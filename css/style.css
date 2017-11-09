@@ -11,17 +11,31 @@
   transition: 0.2345s all;
 }
 
-.buttonbar {
-  height: 20vh;
-  background-color: blue;
+.help {
+  width: 90vw;
+  height: 90vh;
+  margin: 0 auto;
+  background-color: rgba(255,255,255,0.5);
+  position: absolute;
+  top: 5vh;
+  left: 5vw;
   display: none;
 }
 
-.button {
-  box-sizing: border-box;
-  border: 1px solid black;
-  height: 100%;
-  width: calc(100% / 7);
-  display: inline-block;
+.showHelp {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 50%;
+}
+
+.showHelp:hover {
   background-color: white;
+  cursor: pointer;
 }
