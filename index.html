@@ -8,7 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js" charset="utf-8"></script>
     <script src="js/main.js" charset="utf-8"></script>
-    <script type="text/paperscript" canvas="myCanvas">
+    <script type="text/paperscript" canvas="myCanvas"> // paperscript is javascript specific to the paperjs library
+    // this is here because i was getting something called a cross origin error
 
 
     var pian1 = new Howl({
@@ -379,6 +380,7 @@
             squares.splice(i, 1)
           }
         }
+
       }
 
     function onKeyUp(event){
@@ -399,7 +401,7 @@
 
   <canvas id="myCanvas"></canvas>
   <div class="showHelp">?</div>
-  <div class="help"></div>
+  <div class="help">TODO: Make Help Graphic</div>
 
   </body>
 </html>
