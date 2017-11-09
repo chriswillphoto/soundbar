@@ -83,6 +83,11 @@
       volume: 0.6
     })
 
+    var drumloop = new Howl({
+      src:["drumloop.mp3"],
+      loop: true
+    })
+
     var circles = []
     var circles2 = []
     var squares = []
@@ -323,6 +328,17 @@
             looper = false
             clearInterval(intervalId)
           }
+        }else if(event.key === "u"){
+          if(!looper){
+            drumloop.play()
+            looper = true
+            strobe();
+            intervalId = setInterval(strobe, 469)
+          }else{
+            drumloop.stop()
+            looper = false
+            clearInterval(intervalId)
+          }
         }
     }
 
@@ -387,6 +403,6 @@
   <div class="showHelp">?</div>
   <div class="help"></div>
   <script src="js/main.js" charset="utf-8"></script>
-  
+
   </body>
 </html>
