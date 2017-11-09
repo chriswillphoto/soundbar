@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.5/howler.min.js" charset="utf-8"></script>
     <script type="text/paperscript" canvas="myCanvas">
 
+
     var sound = new Howl({
       src: ["pian.mp3"],
       volume: 0.07
@@ -37,23 +38,46 @@
       volume: 0.3
     })
 
+    var synth1 = new Howl ({
+      src: ["synth1.mp3"]
+    })
+    var synth2 = new Howl ({
+      src: ["synth2.mp3"]
+    })
+    var synth3 = new Howl ({
+      src: ["synth3.mp3"]
+    })
+    var synth4 = new Howl ({
+      src: ["synth4.mp3"]
+    })
+
+    var synthloop = new Howl ({
+      src: ["synthloop1.mp3"],
+      loop: true,
+      volume: 0.6
+    })
+
     var circles = []
     var circles2 = []
     var squares = []
     var triangles = []
+    var lines = []
     var colors = ["blue", "red", "pink", "skyblue", "purple", "indigo"]
     var k = view.size.height
+    var looper = false
+    var intervalId;
 
 
-    function onKeyDown(event){
+    function onKeyDown(event){ // <----------------- KICK ------------------
         if(event.key === "j"){
           var maxPoint = new Point(view.size.width, view.size.height)
-          var newRectangle = new Path.Rectangle(new Point(maxPoint/2), 20)
+          var newRectangle = new Path.Rectangle((maxPoint/2), 20)
           newRectangle.strokeColor = colors[Math.floor(Math.random()*colors.length)]
           kick.play();
 
           squares.push(newRectangle);
-        }else if(event.key === "a"){
+
+        }else if(event.key === "a"){  // < -------------- PIANO CLIP -----------
           for (var i = 0; i < 11; i++) {
             var maxPoint = new Point(view.size.width, view.size.height)
             var randomPoint = Point.random()
@@ -68,7 +92,7 @@
 
           }
 
-        }else if(event.key === "k"){
+        }else if(event.key === "k"){  // <-------------------CLAP ------------------
           for (var i = 0; i < 7; i++) {
             var maxPoint = new Point(view.size.width, view.size.height)
             var randomPoint = Point.random()
@@ -85,17 +109,18 @@
           k = view.size.height
           }
           clap.play()
-        }else if(event.key === "i"){ // TODO GRAPHICS FOR BASS1
+
+        }else if(event.key === "i"){ // <----------- BASS ------------------
           var circleMaker = function(x, y) {
             var bassCircle = new Path.Circle(new Point(x, y), 90)
             bassCircle.strokeColor = "white"
             circles2.push(bassCircle)
           }
 
-          circleMaker(220, 200)
-          circleMaker(220, 600)
-          circleMaker(1220, 200)
-          circleMaker(1220, 600)
+          circleMaker(view.size.width*0.15, view.size.height * 0.25)
+          circleMaker(view.size.width*0.15, view.size.height*0.75)
+          circleMaker(view.size.width*0.85, view.size.height*0.25)
+          circleMaker(view.size.width*0.85, view.size.height*0.75)
 
           bass1.play()
 
@@ -107,11 +132,12 @@
             circles2.push(bassCircle)
           }
 
-          circleMaker(220, 200)
-          circleMaker(220, 600)
-          circleMaker(1220, 200)
-          circleMaker(1220, 600)
+          circleMaker(view.size.width*0.15, view.size.height*0.25)
+          circleMaker(view.size.width*0.15, view.size.height*0.75)
+          circleMaker(view.size.width*0.85, view.size.height*0.25)
+          circleMaker(view.size.width*0.85, view.size.height*0.75)
           bass2.play()
+
         }else if(event.key === "p"){
 
           var circleMaker = function(x, y) {
@@ -120,11 +146,69 @@
             circles2.push(bassCircle)
           }
 
-          circleMaker(220, 200)
-          circleMaker(220, 600)
-          circleMaker(1220, 200)
-          circleMaker(1220, 600)
+          circleMaker(view.size.width*0.15, view.size.height*0.25)
+          circleMaker(view.size.width*0.15, view.size.height*0.75)
+          circleMaker(view.size.width*0.85, view.size.height*0.25)
+          circleMaker(view.size.width*0.85, view.size.height*0.75)
           bass3.play()
+
+        }else if(event.key === "q"){ // <----------- SYNTHS --------------
+          var point = Math.floor(Math.random()*view.size.width)
+          for (var i = 0; i < 6; i++) {
+            var synthLine = new Path
+            synthLine.strokeColor = "green"
+            synthLine.add(new Point(point + (i * 10), 0), new Point(point + (i * 10), view.size.height) )
+            lines.push(synthLine)
+          }
+          synth1.play()
+        }else if(event.key === "w"){
+          var point = Math.floor(Math.random()*view.size.width)
+          for (var i = 0; i < 6; i++) {
+            var synthLine = new Path
+            synthLine.strokeColor = "blue"
+            synthLine.add(new Point(point + (i * 10), 0), new Point(point + (i * 10), view.size.height) )
+            lines.push(synthLine)
+          }
+          synth4.play()
+        }else if(event.key === "e"){
+          var point = Math.floor(Math.random()*view.size.width)
+          for (var i = 0; i < 6; i++) {
+            var synthLine = new Path
+            synthLine.strokeColor = "purple"
+            synthLine.add(new Point(point + (i * 10), 0), new Point(point + (i * 10), view.size.height) )
+            lines.push(synthLine)
+          }
+          synth3.play()
+        }else if(event.key === "r"){
+          var point = Math.floor(Math.random()*view.size.width)
+          for (var i = 0; i < 6; i++) {
+            var synthLine = new Path
+            synthLine.strokeColor = "pink"
+            synthLine.add(new Point(point + (i * 10), 0), new Point(point + (i * 10), view.size.height) )
+            lines.push(synthLine)
+          }
+          synth2.play()
+        }else if(event.key === "t"){
+          var strobe = function() {
+            $("#myCanvas").css("background", "#2F2A30")
+
+            setTimeout(function(){
+              $("#myCanvas").css("background", "black")
+            }, 234.5)
+
+          }
+
+
+          if(!looper){
+            synthloop.play()
+            looper = true
+            strobe();
+            intervalId = setInterval(strobe, 469)
+          }else{
+            synthloop.stop()
+            looper = false
+            clearInterval(intervalId)
+          }
         }
     }
 
@@ -169,8 +253,8 @@
       for (var i = 0; i < circles.length; i++) {
         // circles[i].remove()
       }
-      for (var i = 0; i < squares.length; i++) {
-        // squares[i].remove()
+      for (var i = 0; i < lines.length; i++) {
+        lines[i].remove()
       }
       for (var i = 0; i < triangles.length; i++) {
         triangles[i].remove()
@@ -182,20 +266,10 @@
     </script>
     <script src="js/main.js" charset="utf-8"></script>
   </head>
+
+
   <body>
+
   <canvas id="myCanvas"></canvas>
-  <div class="buttonbar">
-    <div class="button">
-    </div><div class="button">
-    </div><div class="button">
-    </div><div class="button">
-    </div><div class="button">
-    </div><div class="button">
-    </div><div class="button">
-    </div>
-  </div>
-
-
-
   </body>
 </html>

@@ -8,6 +8,7 @@
   height: 100vh;
   width: 100%;
   background-color: black;
+  transition: 0.2345s all;
 }
 
 .buttonbar {
