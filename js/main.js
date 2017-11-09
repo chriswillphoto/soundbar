@@ -3,11 +3,11 @@ let help = false
 $(".showHelp").on("click", function(){
   if(!help){
 
-    $(".help").css("display", "block");
+    $(".help").show(500);
     $(".showHelp").text("X");
     help = true;
   }else{
-    $(".help").css("display", "none");
+    $(".help").hide(500);
     $(".showHelp").text("?");
     help = false;
   };
